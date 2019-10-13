@@ -28,12 +28,13 @@ class Instructor extends Person {
 
 class Student extends Person {
     constructor(studentAttrs) {
+        super(studentAttrs);
         this.previousBackground = studentAttrs.previousBackground;
         this.className = studentAttrs.className;
         this.favSubjects = studentAttrs.favSubjects;
     }
     listsSubjects(){
-
+        return `My favorite subjects are ${this.favSubjects}.`
     }
     PRAssignment(subject){
         return `${this.name} has submitted a PR for ${subject}.`;
@@ -45,6 +46,7 @@ class Student extends Person {
 
 class ProjectManager extends Instructor {
     constructor(pMAttrs){
+        super(pMAttrs);
         this.gradClassName = pMAttrs.gradClassName;
         this.favInstructor = pMAttrs.favInstructor;
     }
@@ -57,3 +59,37 @@ class ProjectManager extends Instructor {
 }
 
 // test objects below //
+const fred = new Instructor({
+    name: 'Fred',
+    location: 'Bedrock',
+    age: 37,
+    favLanguage: 'JavaScript',
+    specialty: 'Front-end',
+    catchPhrase: `Don't forget the homies`
+});
+
+const jeff = new Student({
+    name: 'Jeff',
+    location: 'Cincinnati',
+    age: 27,
+    favSubjects: 'Python',
+    className: 'WebPT11',
+    previousBackground: 'Enginerd'
+});
+
+const mike = new ProjectManager({
+    name: 'Mike',
+    location: 'Chicago',
+    age: 28,
+    gradClassName: 'WebPT9',
+    favInstructor: 'Chris'
+});
+
+console.log(jeff.listsSubjects());
+console.log(jeff.PRAssignment("javascript"));
+console.log(jeff.sprintChallenge("python"));
+console.log(mike.standUp("WebPT11"));
+console.log(mike.debugsCode(jeff, "C++"));
+console.log(fred.demo("React"));
+console.log(fred.grade(jeff, "React"));
+console.log(jeff.speak());
